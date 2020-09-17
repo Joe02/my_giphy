@@ -1,4 +1,4 @@
-# my_giphy
+# My Giphy
 
 A new Flutter application.
 
