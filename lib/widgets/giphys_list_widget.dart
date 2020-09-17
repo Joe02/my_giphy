@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_giphy/pages/giphy_details_page.dart';
 import 'package:my_giphy/utils/giphy_controller.dart';
+import 'package:share/share.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class GiphysListWidget extends StatefulWidget {
   final String search;
@@ -49,10 +52,25 @@ class GiphysListWidgetState extends State<GiphysListWidget> {
           crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
       itemCount: snapshot.data["data"].length,
       itemBuilder: (context, index) => GestureDetector(
-          onTap: () {},
-          child: Image.network(
-            snapshot.data["data"][index]["images"]["fixed_height"]["url"],
-            height: 300.0,
+          onLongPress: () {
+            Share.share(
+                snapshot.data["data"][index]["images"]["fixed_height"]["url"]);
+          },
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => GiphyDetailsPage(
+                  snapshot.data["data"][index],
+                ),
+              ),
+            );
+          },
+          child: FadeInImage.memoryNetwork(
+            placeholder: kTransparentImage,
+            image: snapshot.data["data"][index]["images"]["fixed_height"]
+                ["url"],
+            height: 300,
             fit: BoxFit.cover,
           )),
     );

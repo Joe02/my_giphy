@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import 'package:my_giphy/widgets/giphys_list_widget.dart';
 
@@ -50,9 +48,9 @@ class GiphyHomePageState extends State<GiphyHomePage> {
                             });
                           },
                           child: Icon(
-                          Icons.clear,
-                          color: Colors.white,
-                        ))
+                            Icons.clear,
+                            color: Colors.white,
+                          ))
                       : Icon(
                           Icons.search,
                           color: Colors.white,
